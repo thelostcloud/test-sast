@@ -1,0 +1,20 @@
+{
+  "name": "app1",
+  "version": "1.0.0",
+  "description": "Console application 1",
+  "private": true,
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js",
+    "dev": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js --watch",
+    "start": "node dist/index.js",
+    "lint": "eslint src --ext .ts"
+  },
+  "dependencies": {
+    "typescript": "^5.3.3",
+    "fast-xml-parser": "5.4.2"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  }
+}

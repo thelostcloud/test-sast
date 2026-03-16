@@ -1,0 +1,21 @@
+{
+  "name": "app3",
+  "version": "1.0.0",
+  "description": "Console application 3",
+  "private": true,
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js",
+    "dev": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js --watch",
+    "start": "node dist/index.js",
+    "lint": "eslint src --ext .ts"
+  },
+  "dependencies": {
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "coveralls": "3.1.1",
+    "@types/node": "^25.5.0"
+  }
+}
