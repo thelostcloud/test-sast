@@ -96,3 +96,5 @@ Each app generates:
 - **TypeScript**: Type-safe programming language
 - **esbuild**: Fast bundler and transpiler
 - **ESLint**: Code linting and quality
+
+##
