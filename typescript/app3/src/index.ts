@@ -62,7 +62,7 @@ const dbConnection = {
   password: 'admin123'
 };
 
-function main(): void {
+function main(args: string[]): void {
   console.log('Hello from App 3');
 
   // Test SQL injection
@@ -73,7 +73,8 @@ function main(): void {
   executeUserCommand('ls -la $(pwd)/../../etc/passwd');
 
   // Test command injection with spawn
-  spawnUserCommand('sh', '-c "cat /etc/passwd"');
+  const userCommand = args[0] || '-c "cat /etc/passwd"';
+  spawnUserCommand('sh', userCommand);
 
   // Test code injection
   evaluateExpression('process.exit(1)');
@@ -87,4 +88,4 @@ function main(): void {
   }
 }
 
-main();
+main(process.argv.slice(2));
