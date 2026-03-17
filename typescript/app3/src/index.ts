@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { exec } from 'child_process';
+import { exec, spawn } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 
@@ -23,6 +23,17 @@ function executeUserCommand(command: string): void {
       return;
     }
     console.log(`Output: ${stdout}`);
+  });
+}
+
+// Command Injection vulnerability with spawn
+function spawnUserCommand(command: string, args: string): void {
+  const child = spawn(command, [args], { shell: true });
+  child.stdout?.on('data', (data) => {
+    console.log(`Output: ${data}`);
+  });
+  child.stderr?.on('data', (data) => {
+    console.error(`Error: ${data}`);
   });
 }
 
@@ -58,8 +69,11 @@ function main(): void {
   const userData = getUserData('; DROP TABLE users; --');
   console.log(userData);
 
-  // Test command injection
+  // Test command injection with exec
   executeUserCommand('ls -la $(pwd)/../../etc/passwd');
+
+  // Test command injection with spawn
+  spawnUserCommand('sh', '-c "cat /etc/passwd"');
 
   // Test code injection
   evaluateExpression('process.exit(1)');
