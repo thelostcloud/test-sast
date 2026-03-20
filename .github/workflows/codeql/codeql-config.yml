@@ -1,0 +1,6 @@
+name: "CodeQL config.;"
+
+paths:
+- 'typescript/**/src/*.ts'
+paths-ignore:
+- '**/node_modules'
