@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { exec, spawn } from 'child_process';
+import { exec, execSync, spawn } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 
@@ -63,6 +63,10 @@ const dbConnection = {
 };
 
 function main(args: string[]): void {
+
+
+  // Unsafe: user input directly passed to shell
+  spawn('ls', args, { shell: true });
   console.log('Hello from App 3');
 
   // Test SQL injection
